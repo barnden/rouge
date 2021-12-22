@@ -22,12 +22,12 @@ module Rouge
 
       def self.keywords
         @keywords ||= super + Set.new(%w(
-          asm auto catch const_cast delete dynamic_cast explicit export friend
+          asm auto catch concept const_cast delete dynamic_cast explicit export friend
           mutable namespace new operator private protected public
-          reinterpret_cast restrict size_of static_cast this throw throws
+          reinterpret_cast requires restrict size_of static_cast this throw throws
           typeid typename using virtual final override
 
-          alignas alignof constexpr decltype noexcept static_assert
+          alignas alignof constexpr consteval decltype noexcept static_assert
           thread_local try
         ))
       end

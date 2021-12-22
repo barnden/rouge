@@ -52,7 +52,8 @@ module Rouge
           __asm __int8 __based __except __int16 __stdcall __cdecl
           __fastcall __int32 __declspec __finally __int61 __try __leave
           inline _inline __inline naked _naked __naked restrict _restrict
-          __restrict thread _thread __thread typename _typename __typename
+          __restrict __restrict__ thread _thread __thread typename _typename __typename
+          # __attribute__ gnu
         )
       end
 
@@ -172,7 +173,8 @@ module Rouge
       state :macro do
         # NB: pop! goes back to :bol
         rule %r/\n/, Comment::Preproc, :pop!
-        rule %r([^/\n\\]+), Comment::Preproc
+        rule %r([^\s]+), Comment::Preproc
+        rule %r/\s(.[^\n\s]+)/, Name::Function, :pop!
         rule %r/\\./m, Comment::Preproc
         mixin :inline_whitespace
         rule %r(/), Comment::Preproc
